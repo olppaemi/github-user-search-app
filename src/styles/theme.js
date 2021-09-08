@@ -1,3 +1,5 @@
+import rem from "./utils/rem";
+
 export const light = {
   colors: {
     background: "var(--zircon)",
@@ -8,6 +10,7 @@ export const light = {
     h3: "var(--deep-sky-blue)",
     h4: "var(--kashmir-blue)",
   },
+  boxShadow: `0 ${rem(16)} ${rem(30)} ${rem(-10)} hsla(227, 46%, 51%, 0.1986)`,
 };
 
 export const dark = {
@@ -20,4 +23,5 @@ export const dark = {
     h3: "var(--deep-sky-blue)",
     h4: "var(--white)",
   },
+  boxShadow: "none",
 };

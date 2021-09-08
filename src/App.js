@@ -1,41 +1,29 @@
-import Button from "components/Button";
-import Search from "components/Search/index";
-import ThemeToggle from "components/ThemeToggle/index";
 import { useTheme } from "hooks/useTheme";
-import styled, { ThemeProvider } from "styled-components";
-import { GlobalStyle } from "styles/globalStyles";
-
-const Container = styled.div`
-  max-width: 1440px;
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Wrapper = styled.div`
-  width: 730px;
-`;
+import { ThemeProvider } from "styled-components";
+import Search from "components/Search/index";
+import HeaderSection from "sections/HeaderSection";
+import GlobalStyles from "styles/GlobalStyles";
+import UserInfo from "sections/UserInfo";
+import { useQuery } from "@apollo/client";
+import { GET_USER_INFO } from "services/queries";
+import { useState } from "react";
 
 const App = () => {
   const [theme, mode, toggleTheme] = useTheme();
+  const [username, setUsername] = useState("octocat");
+
+  const { loading, error, data } = useQuery(GET_USER_INFO, {
+    variables: { username },
+    skip: username === "",
+  });
 
   return (
     <ThemeProvider theme={theme}>
-      <Container>
-        <Wrapper>
-          <GlobalStyle />
-          <h1>Hello world</h1>
-          <h2>Hello world</h2>
-          <h3>Hello world</h3>
-          <h4>Hello world</h4>
-          <p>Hello world</p>
-          <Button>Search</Button>
-          <Search />
-          <ThemeToggle mode={mode} onChange={toggleTheme} />
-        </Wrapper>
-      </Container>
+      <GlobalStyles>
+        <HeaderSection mode={mode} onChange={toggleTheme} />
+        <Search username={username} onSubmit={setUsername} />
+        <UserInfo loading={loading} error={error} data={data} />
+      </GlobalStyles>
     </ThemeProvider>
   );
 };
