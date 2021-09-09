@@ -12,6 +12,8 @@ export const UserInfoContainer = styled.div`
   background: ${({ theme }) => theme.colors.cardBg};
   padding: ${rem(48)};
   margin-top: ${rem(24)};
+  border-radius: ${rem(15)};
+  box-shadow: ${({ theme }) => theme.boxShadow};
 
   ${breakpointDown.lg`
     height: ${rem(481)};   
@@ -34,8 +36,6 @@ const UserInfo = styled.main`
     "blank stats"
     "blank profile";
   gap: 0 ${rem(37)};
-  border-radius: ${rem(15)};
-  box-shadow: ${({ theme }) => theme.boxShadow};
 
   ${breakpointDown.lg`    
     grid-template-areas:
