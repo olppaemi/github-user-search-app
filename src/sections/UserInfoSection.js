@@ -1,6 +1,6 @@
 import { formatDate } from "services/formatDate";
 import AvatarImg from "styles/components/AvarImg";
-import Main, {
+import UserInfo, {
   AvatarContainer,
   Bio,
   Company,
@@ -12,15 +12,16 @@ import Main, {
   Stat,
   Title,
   Twitter,
-  UserInfoContainer,
   Value,
   Website,
-} from "styles/layout/Main";
+  UserName,
+  UserInfoContainer,
+} from "styles/layout/UserInfo";
 
-const UserInfo = ({ loading, error, data }) => {
-  if (loading) return <Main>Loading...</Main>;
-  if (error) return <Main>{error.message}</Main>;
-  if (!data) return <Main>no info</Main>;
+const UserInfoSection = ({ loading, error, data }) => {
+  if (loading) return <UserInfoContainer>Loading...</UserInfoContainer>;
+  if (error) return <UserInfoContainer>{error.message}</UserInfoContainer>;
+  if (!data) return <UserInfoContainer>no info</UserInfoContainer>;
 
   const {
     name,
@@ -38,16 +39,18 @@ const UserInfo = ({ loading, error, data }) => {
   } = data.user;
 
   return (
-    <Main>
-      <AvatarContainer>
-        <AvatarImg src={avatarUrl} />
-      </AvatarContainer>
-      <UserInfoContainer>
+    <UserInfoContainer>
+      <UserInfo>
+        <AvatarContainer>
+          <AvatarImg src={avatarUrl} />
+        </AvatarContainer>
         <Title>
-          <h1>{name}</h1>
+          <div>
+            <UserName>{name}</UserName>
+            <Login>@{login}</Login>
+          </div>
           <p>Joined {formatDate(createdAt)}</p>
         </Title>
-        <Login>@{login}</Login>
         <Bio>{bio ? bio : "This profile has no bio"}</Bio>
         <Stats>
           <Stat>
@@ -71,9 +74,9 @@ const UserInfo = ({ loading, error, data }) => {
           <Website>{websiteUrl ? websiteUrl : "Not Available"}</Website>
           <Company>{company ? company : "Not Available"}</Company>
         </Profile>
-      </UserInfoContainer>
-    </Main>
+      </UserInfo>
+    </UserInfoContainer>
   );
 };
 
-export default UserInfo;
+export default UserInfoSection;

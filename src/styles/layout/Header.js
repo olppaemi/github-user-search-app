@@ -8,6 +8,10 @@ const Header = styled.header`
   justify-content: space-between;
   align-items: center;
   margin-bottom: ${rem(36)};
+
+  h1 {
+    font-size: ${rem(26)};
+  }
 `;
 
 export default Header;

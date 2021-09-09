@@ -3,7 +3,7 @@ import { ThemeProvider } from "styled-components";
 import Search from "components/Search/index";
 import HeaderSection from "sections/HeaderSection";
 import GlobalStyles from "styles/GlobalStyles";
-import UserInfo from "sections/UserInfo";
+import UserInfoSection from "sections/UserInfoSection";
 import { useQuery } from "@apollo/client";
 import { GET_USER_INFO } from "services/queries";
 import { useState } from "react";
@@ -21,8 +21,13 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <GlobalStyles>
         <HeaderSection mode={mode} onChange={toggleTheme} />
-        <Search username={username} onSubmit={setUsername} />
-        <UserInfo loading={loading} error={error} data={data} />
+        <Search
+          username={username}
+          onSubmit={setUsername}
+          loading={loading}
+          data={data}
+        />
+        <UserInfoSection loading={loading} error={error} data={data} />
       </GlobalStyles>
     </ThemeProvider>
   );

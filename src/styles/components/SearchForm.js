@@ -2,6 +2,7 @@ import styled from "styled-components";
 import rem from "styles/utils/rem";
 import iconSearch from "assets/icon-search.svg";
 import Button from "./Button";
+import { breakpointDown } from "styles/utils/breakpoints";
 
 const SearchForm = styled.form`
   width: 100%;
@@ -13,6 +14,10 @@ const SearchForm = styled.form`
   border-radius: ${rem(10)};
   box-shadow: ${({ theme }) => theme.boxShadow};
 
+  ${breakpointDown.sm`
+    padding-left: ${rem(16)};
+  `}
+
   &::before {
     display: block;
     content: "";
@@ -20,6 +25,12 @@ const SearchForm = styled.form`
     height: ${rem(24)};
     background: center / contain no-repeat url(${iconSearch});
     margin-right: ${rem(24)};
+
+    ${breakpointDown.sm`
+      width: ${rem(20)};
+      height: ${rem(20)};
+      margin-right: ${rem(9)};
+    `}
   }
 
   input {
@@ -33,6 +44,11 @@ const SearchForm = styled.form`
     border: none;
     outline: none;
 
+    ${breakpointDown.sm`
+      font-size: ${rem(13)};
+      width: ${rem(184)};
+    `}
+
     &::placeholder {
       color: ${({ theme }) => theme.colors.text};
     }
@@ -41,7 +57,12 @@ const SearchForm = styled.form`
   p {
     width: ${rem(92)};
     color: red;
-    margin-left: ${rem(24)};
+
+    ${breakpointDown.sm`
+      width: ${rem(50)};
+      text-align: center;
+      line-height: ${rem(16)};
+    `}
   }
 
   ${Button} {
@@ -49,6 +70,11 @@ const SearchForm = styled.form`
     height: ${rem(50)};
     margin-left: ${rem(24)};
     margin-right: ${rem(10)};
+
+    ${breakpointDown.sm`
+      width: ${rem(84)};
+      margin: 0 ${rem(4)};
+    `}
   }
 `;
 

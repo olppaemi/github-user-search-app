@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { breakpointDown } from "styles/utils/breakpoints";
 import rem from "styles/utils/rem";
 
 export const Button = styled.button`
@@ -16,6 +17,10 @@ export const Button = styled.button`
   &:hover {
     background: var(--crystal-blue);
   }
+
+  ${breakpointDown.sm`
+    font-size: ${rem(14)};
+  `}
 `;
 
 export default Button;

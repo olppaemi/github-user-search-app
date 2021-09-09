@@ -2,7 +2,7 @@ import { useState } from "react";
 import Button from "styles/components/Button";
 import SearchForm, { Wrapper } from "styles/components/SearchForm";
 
-const Search = ({ username, onSubmit, hasUser = true }) => {
+const Search = ({ username, onSubmit, loading, data }) => {
   const [searchText, setSearchText] = useState(username);
 
   const handleChange = (e) => setSearchText(e.target.value);
@@ -21,7 +21,7 @@ const Search = ({ username, onSubmit, hasUser = true }) => {
       />
 
       <Wrapper>
-        {!hasUser && <p>No results</p>}
+        {!loading && !data?.user && <p>No results</p>}
         <Button type="submit">Search</Button>
       </Wrapper>
     </SearchForm>
