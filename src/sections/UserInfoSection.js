@@ -42,7 +42,7 @@ const UserInfoSection = ({ loading, error, data }) => {
     <UserInfoContainer>
       <UserInfo>
         <AvatarContainer>
-          <AvatarImg src={avatarUrl} />
+          <AvatarImg src={avatarUrl} alt="avatar" />
         </AvatarContainer>
         <Title>
           <div>
